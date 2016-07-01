@@ -1,6 +1,6 @@
 {
   "dbConfig": {
-    "host": "localhost",
+    "host": "mongodb",
     "port": "27017",
     "db": "nodetest2"
   },
