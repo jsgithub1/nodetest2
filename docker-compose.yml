@@ -15,4 +15,4 @@ services:
         ports:
             - 3000:3000
             - 3001:3001 
-        command: npm start
+        command: npm run-script docker

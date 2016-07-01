@@ -17,5 +17,5 @@ COPY . /usr/src/app
 EXPOSE 3000:3000
 EXPOSE 3001:3001
 
-CMD ["npm", "start"]
+CMD ["npm", "run-script", "docker"]
 
