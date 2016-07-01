@@ -1,0 +1,35 @@
+{
+  "apps": [
+    {
+      "name": "Express API",
+      "script": "./bin/api",
+      "instances": 2,
+      "env": {
+        "NODE_ENV": "pm2",
+        "NEW_RELIC_APP_NAME": "Express API Prod",
+        "PORT": "3001"
+      }
+    },
+    {
+      "name": "Express Web",
+      "script": "./bin/www",
+      "instances": 2,
+      "env": {
+        "NODE_ENV": "pm2",
+        "NEW_RELIC_APP_NAME": "Express Web Prod",
+        "PORT": "3000"
+      }
+    },
+    {
+      "name": "Express Load",
+      "script": "./test/load/load.js",
+      "env": {
+        "LOAD_DELAY": "5000"
+      }
+    },
+    {
+        "name": "PM2 Plugin",
+        "script": "./node_modules/pm2plugin/pm2plugin.js"
+    }
+  ]
+}

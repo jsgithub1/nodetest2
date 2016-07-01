@@ -8,10 +8,12 @@ services:
     nodetest:
         build:
             context: .
+            args:
+                NEW_RELIC_LICENSE_KEY:
         links:
             - mongodb
         environment:
-            NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
+            NEW_RELIC_LICENSE_KEY:
         ports:
             - 3000:3000
             - 3001:3001 
