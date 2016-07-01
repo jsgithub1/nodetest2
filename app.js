@@ -10,7 +10,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // New Code
-var mongo = require('mongodb');
 var monk = require('monk');
 var dbconn = config.get('dbConfig.host') +
   ':' + config.get('dbConfig.port') +
