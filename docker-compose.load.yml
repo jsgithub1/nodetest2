@@ -5,7 +5,6 @@ services:
         ports: 
             - 27017:27017
 
-
     nodetestapi:
         build:
             context: .
@@ -17,7 +16,7 @@ services:
             NEW_RELIC_APP_NAME: 'Nodetest API'
         ports:
             - 3001:3001
-        command: npm run api
+        command: npm run api        
 
     nodetestweb:
         image: newrelic/nodetest
@@ -30,5 +29,12 @@ services:
         ports:
             - 3000:3000
         command: npm run web
+
+    nodetestload:
+        image: newrelic/nodetest
+        links:
+            - nodetestweb
+        command: npm run load
+        
 
     

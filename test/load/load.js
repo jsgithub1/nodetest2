@@ -1,9 +1,8 @@
 const request = require('request');
-const config = require('config');
 
 // Global variables
-var webHost = config.get('loadConfig.webHost');
-var webPort = ':' + config.get('loadConfig.webPort')
+var webHost = 'nodetestweb';
+var webPort = ':' + '3000';
 var requestCount = 0;
 var responseCount = 0;
 var delayRate = 10000; // Default delay rate is 10s

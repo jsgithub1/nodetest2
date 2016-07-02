@@ -2,7 +2,10 @@ var express = require('express');
 var newrelic = require('newrelic');
 var router = express.Router();
 var request = require('request');
-var config = require('config');
+
+function apiURI(path) {
+  return 'http://nodetestapi:3001/api/' + path;
+}
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -18,8 +21,7 @@ router.get('/search', function(req, res, next) {
 router.get('/list', function(req, res) {
 
   // Call the API
-  var uri = config.get('apiConfig.user') + 'users/';
-  request.get(uri, function(error, response, body) {
+  request.get(apiURI('users/'), function(error, response, body) {
     if (!error && response.statusCode === 200) {
       res.render('userlist', {'users': JSON.parse(body)});
     } else {
@@ -44,8 +46,7 @@ router.get('/:id', function(req, res) {
   console.log('WEB - get user profile: ' + id);
 
   // Call the API
-  var uri = config.get('apiConfig.user') + 'user/' + id;
-  request.get(uri, function(error, response, body) {
+  request.get(apiURI('user/' + id), function(error, response, body) {
     if (!error && response.statusCode === 200) {
       res.render('userprofile', {'userlist': JSON.parse(body)});
     } else {
@@ -79,10 +80,9 @@ router.post('/add', function(req, res) {
     }
 
     // POST Options
-    var uri = config.get('apiConfig.user') + 'user/';
     var options = {
       'method': 'POST',
-      'uri': uri,
+      'uri': apiURI('user/'),
       'json': true,
       'body': userInfo
     }
