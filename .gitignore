@@ -34,3 +34,6 @@ config.json
 
 # New Relic log file
 newrelic_agent.log
+
+# VSCode
+.vscode

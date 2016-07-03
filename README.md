@@ -1,31 +1,20 @@
 # Tutorial: nodetest2
 
-[![Build Status](https://travis-ci.org/kenahrens/nodetest2.svg?branch=master)](https://travis-ci.org/kenahrens/nodetest2)
-
-This is a demo app that includes a basic Express app with MongoDB backend.
+This is a demo app that includes a basic Express app with MongoDB backend.  This fork adds support for running the entire setup under docker using docker-compose for container orchestration.  It also removes the use of pm2 and config.  A single image newrelic/nodetest is used/shared by all 3 containers.
 
 ## Running and Testing
 
-Note: this app requires MongoDB is running on the default ports.
+Notes: 
+   * You must have docker (and docker-compose) installed and configured on your system.  
+   * You need to set the NEW_RELIC_LICENSE_KEY environment variable to your New Relic license key before running the command below.
 
-You can run with ```npm start``` or just run the tests with ```npm test```
+`$ docker-compose up --build`
 
-There are also some load tests, if you use PM2 then you can launch the app and the tests both with PM2.
+This will start 3 containers.  One running mongodb v3.3, one running the ndoetest API app, and one running the nodetest Web app.  The web app is available at http://localhost:3000
 
-```
-$ pm2 start ./bin/www -i 2
-...
-$ pm2 start ./test/load/load.js
-...
-$ pm2 list
-┌──────────┬────┬─────────┬───────┬────────┬─────────┬────────┬──────────────┬──────────┐
-│ App name │ id │ mode    │ pid   │ status │ restart │ uptime │ memory       │ watching │
-├──────────┼────┼─────────┼───────┼────────┼─────────┼────────┼──────────────┼──────────┤
-│ load     │ 3  │ fork    │ 25250 │ online │ 0       │ 14h    │ 39.105 MB    │ disabled │
-│ www      │ 6  │ cluster │ 24963 │ online │ 0       │ 14h    │ 142.559 MB   │ disabled │
-│ www      │ 7  │ cluster │ 24968 │ online │ 0       │ 14h    │ 166.367 MB   │ disabled │
-└──────────┴────┴─────────┴───────┴────────┴─────────┴────────┴──────────────┴──────────┘
-```
+`$ docker-compose -f docker-compose.load.yml up --build`
+
+This will start 4 containers.   One running mongodb v3.3, one running the nodetest API app, one running the nodtest Web app, and one running the nodetest load generator to drive traffic to the web app.
 
 ## Overview
 
@@ -43,11 +32,3 @@ Testing via:
 Monitoring via:
 * morgan - logging
 * newrelic - performance monitoring
-
-## 
-
-## New Relic Setup
-
-If you want to monitor this app with New Relic, you need to modify newrelic.js or set the proper environment variables:
-* NEW_RELIC_APP_NAME
-* NEW_RELIC_LICENSE_KEY
