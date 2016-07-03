@@ -4,6 +4,8 @@ services:
         image: mongo:3.3
         ports: 
             - 27017:27017
+        container_name: mongodb
+        hostname: mongodb
 
 
     nodetestapi:
@@ -17,6 +19,8 @@ services:
             NEW_RELIC_APP_NAME: 'Nodetest API'
         ports:
             - 3001:3001
+        container_name: nodetestapi
+        hostname: nodetestapi
         command: npm run api
 
     nodetestweb:
@@ -29,6 +33,8 @@ services:
             NEW_RELIC_APP_NAME: 'Nodetest Express Web'
         ports:
             - 3000:3000
+        container_name: nodetestweb
+        hostname: nodetestweb
         command: npm run web
 
     
