@@ -10,7 +10,7 @@ Notes:
 
 `$ docker-compose up --build`
 
-This will start 3 containers.  One running mongodb v3.3, one running the ndoetest API app, and one running the nodetest Web app.  The web app is available at http://localhost:3000
+This will start 3 containers.  One running mongodb v3.3, one running the nodetest API app, and one running the nodetest Web app.  The web app is available at http://localhost:3000
 
 `$ docker-compose -f docker-compose.load.yml up --build`
 
